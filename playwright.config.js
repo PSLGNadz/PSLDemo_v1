@@ -24,16 +24,28 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    
+    /* Screenshot on failure */
+    screenshot: 'only-on-failure',
+    
+    /* Video recording for debugging */
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'], 
+        headless: false,  // This ensures headed mode
+        slowMo: 1000,     // Slow down by 1 second between actions so you can see them
+        viewport: { width: 1280, height: 720 }  // Set a good viewport size
+      },
     },
 
-    {
+
+   /* {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
