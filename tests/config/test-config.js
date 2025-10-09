@@ -3,9 +3,14 @@ const randomId = Math.floor(Math.random() * 10000); // Random ID for email uniqu
 
 export const config = {
   // Base URLs
+  //Staging Environment
   ntkPapersUrl: 'https://staging-ntkpapers.ntk-institute.org/',
   ntkUrl: 'https://staging.ntk-institute.org/',
+  //Production Environment
+  ntkUrlProd: 'https://ntk-institute.org/',
+  // Mail services
   mailinatorUrl: 'https://www.mailinator.com/v4/public/inboxes.jsp',
+  mailosaurURL: 'https://mailosaur.com/app-ea/login?redirect=%2Fapp-ea%2Fservers%2Ftjun2apv%2Fmessages%2Finbox',
   
   // Test timeouts
   timeouts: {
@@ -15,10 +20,14 @@ export const config = {
   },
   // Test data
   testUser: {
-//    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
-//    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
-    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,
-    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,    
+//    generateUniqueEmail: `phoenix.newsletters+${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
+//    generateUniqueEmail2: `phoenix.newsletters+${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
+    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
+    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
+//    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@tjun2apv.mailosaur.net`,
+//    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@tjun2apv.mailosaur.net`,    
+//    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,
+//    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,    
     firstName: 'Playwright',
     lastName: `Auto${String(randomId).padStart(1, '0')}`,
     country: 'Malaysia',

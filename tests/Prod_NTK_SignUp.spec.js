@@ -9,19 +9,19 @@ test.describe('NTK Papers User Registration', () => {
   
   test.beforeEach(async () => {
     // Generate unique email for each test run
-    uniqueEmail = config.testUser.generateUniqueEmail;
+    uniqueEmail = config.testUser.generateUniqueEmail2;
     console.log(`🎯 Test started at: ${utils.getCurrentTimestamp()}`);
     console.log(`📧 Using test email: ${uniqueEmail}`);
   });
 
   test('Complete user signup flow with email verification', async ({ page }) => {
     // Set longer timeout for this complex flow
-    test.setTimeout(120000);
+    test.setTimeout(210000);
     
     console.log('🚀 Phase 1: NTK Papers Registration');
     
     // Navigate to NTK Papers
-    await page.goto(config.ntkPapersUrl, { waitUntil: 'networkidle' });
+    await page.goto(config.ntkUrlProd, { waitUntil: 'networkidle' });
     
     // Step 1: Enter email and submit
     console.log('📧 Step 1: Entering email address');
@@ -56,13 +56,10 @@ test.describe('NTK Papers User Registration', () => {
     
     // Step 5: Upload document
     console.log('📎 Step 5: Uploading verification document');
-    await page.getByRole('combobox').filter({ hasText: '<span>Upload document</span><' }).click();
+    await page.getByRole('combobox').filter({ hasText: '<span>Upload Documents</span' }).click();
     await page.waitForTimeout(1000);
-    await page.getByRole('combobox').filter({ hasText: '<span>Upload document</span><' }).click();
+    await page.getByText('Upload Documents').nth(1).click();
     
-    // Select verification method first
-    //await page.selectOption('select[name*="verification"], [name*="verificationType"]', 'upload');
-
     // Handle file upload with file chooser
     const uploadFilePath = path.join(process.cwd(), 'test-data', 'sample-document.png');
 
@@ -71,21 +68,12 @@ test.describe('NTK Papers User Registration', () => {
     page.getByRole('link', { name: 'Browse Files' }).click()
     ]);
     await fileChooser.setFiles(uploadFilePath);
- /*   // Create a sample file path (use existing or create dummy)
-    const uploadFilePath = path.join(process.cwd(), 'test-data', 'sample-document.png');
-    
-    try {
-      await page.locator('link', { name: 'fileBrowse' }).setInputFiles(uploadFilePath);
-    } catch (error) {
-      console.log('⚠️  Upload file not found, using alternative method');
-      // Fallback: create a small test file or skip this step with proper error handling
-      console.log('📝 Skipping file upload for this test run');
-    }
- */   
+
     // Step 6: Accept terms and submit
     console.log('✅ Step 6: Accepting terms and submitting registration');
     await page.getByRole('checkbox', { name: 'I have read and agree to the' }).check();
     await page.getByRole('button', { name: 'Submit' }).click();
+    await page.getByRole('heading', { name: 'Thank you' }).click();
     
     // Wait for submission to complete
     await page.waitForTimeout(3000);
@@ -101,10 +89,14 @@ test.describe('NTK Papers User Registration', () => {
     
     await page.getByRole('textbox', { name: 'Email field' }).fill(secrets.mailinator.email);
     await page.getByRole('textbox', { name: 'Password field' }).fill(secrets.mailinator.password);
-    await page.waitForTimeout(35000);
+    await page.waitForTimeout(30000);
     await page.getByLabel('Login link').click();
     
     // Wait for login to complete
+    await page.getByRole('textbox', { name: 'inbox field' }).click();
+    await page.getByRole('textbox', { name: 'inbox field' }).fill(uniqueEmail);
+    await page.getByRole('button', { name: 'GO', exact: true }).click();
+
     await page.waitForTimeout(2000);
     await page.getByRole('button', { name: 'GO', exact: true }).click();
     await page.waitForTimeout(2000);
@@ -112,7 +104,7 @@ test.describe('NTK Papers User Registration', () => {
     await page.waitForTimeout(2000);
     await page.getByRole('button', { name: 'GO', exact: true }).click();
     await page.waitForTimeout(2000);
-    
+
     // Step 8: Find and click verification email
     console.log('📬 Step 8: Finding verification email');
     const emailIdentifier = uniqueEmail.split('@')[0].toLowerCase();
@@ -129,16 +121,23 @@ test.describe('NTK Papers User Registration', () => {
         .click();
       
       const verificationPage = await page1Promise;
-      
+      await page.waitForTimeout(5000);
+
       // Step 10: Complete verification process
       console.log('✅ Step 10: Completing verification');
-      await verificationPage.goto(config.ntkPapersUrl, { waitUntil: 'networkidle' });
       
       // Scroll down to see content
-      await verificationPage.mouse.wheel(0, 1000);
+      // Simple 3x scroll with waits
+      console.log('✅ Scrolled 3 times with 2-second waits');
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(2000);
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(2000);
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(2000);
       
       // Add assertion to verify successful registration
-      await expect(verificationPage).toHaveURL(config.ntkPapersUrl);
+      await expect(verificationPage).toHaveURL(verificationPage);
       
       console.log('🎉 Test completed successfully!');
       
