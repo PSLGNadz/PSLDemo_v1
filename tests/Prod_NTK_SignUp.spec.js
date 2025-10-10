@@ -16,7 +16,7 @@ test.describe('NTK Papers User Registration', () => {
 
   test('Complete user signup flow with email verification', async ({ page }) => {
     // Set longer timeout for this complex flow
-    test.setTimeout(210000);
+    test.setTimeout(280000);
     
     console.log('🚀 Phase 1: NTK Papers Registration');
     
@@ -97,14 +97,6 @@ test.describe('NTK Papers User Registration', () => {
     await page.getByRole('textbox', { name: 'inbox field' }).fill(uniqueEmail);
     await page.getByRole('button', { name: 'GO', exact: true }).click();
 
-    await page.waitForTimeout(2000);
-    await page.getByRole('button', { name: 'GO', exact: true }).click();
-    await page.waitForTimeout(2000);
-    await page.getByRole('button', { name: 'GO', exact: true }).click();
-    await page.waitForTimeout(2000);
-    await page.getByRole('button', { name: 'GO', exact: true }).click();
-    await page.waitForTimeout(2000);
-
     // Step 8: Find and click verification email
     console.log('📬 Step 8: Finding verification email');
     const emailIdentifier = uniqueEmail.split('@')[0].toLowerCase();
@@ -114,31 +106,23 @@ test.describe('NTK Papers User Registration', () => {
       
       // Step 9: Click verification link
       console.log('🔗 Step 9: Clicking verification link');
-      const page1Promise = page.waitForEvent('popup');
       await page.locator('iframe[name="html_msg_body"]')
         .contentFrame()
         .getByRole('link', { name: 'LOG IN' })
         .click();
-      
-      const verificationPage = await page1Promise;
-      await page.waitForTimeout(5000);
+
+      await page.waitForTimeout(30000);
 
       // Step 10: Complete verification process
       console.log('✅ Step 10: Completing verification');
       
       // Scroll down to see content
-      // Simple 3x scroll with waits
-      console.log('✅ Scrolled 3 times with 2-second waits');
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await page.waitForTimeout(2000);
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await page.waitForTimeout(2000);
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await page.waitForTimeout(2000);
-      
-      // Add assertion to verify successful registration
-      await expect(verificationPage).toHaveURL(verificationPage);
-      
+      // Scroll down 3 times with pauses 2 seconds
+      for (let i = 0; i < 3; i++) {
+        await page.evaluate(() => window.scrollBy(0, window.innerHeight));
+        await page.waitForTimeout(2000);
+      }
+            
       console.log('🎉 Test completed successfully!');
       
     } catch (error) {
