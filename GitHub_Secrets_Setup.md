@@ -56,4 +56,4 @@ git push origin main
 
 ---
 
-**Next Steps:** Add the secrets and push your code! 🚀
+**Next Steps:** Add the secrets and push your code! 🚀# CI/CD Pipeline Ready! 🚀
