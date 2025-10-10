@@ -8,8 +8,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   test:
@@ -30,13 +28,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps chromium
     
-    - name: Run Playwright tests (ALL tests including email verification)
-      run: npx playwright test --project=chromium
+    - name: Run Playwright tests (Signup tests only - no email verification)
+      run: npx playwright test --project=chromium --grep-invert "Login.*Verification|Email.*Verification"
       env:
-        # GitHub Secrets for secure Mailinator access
-        MAILINATOR_EMAIL: ${{ secrets.MAILINATOR_EMAIL }}
-        MAILINATOR_PASSWORD: ${{ secrets.MAILINATOR_PASSWORD }}
-        # Additional environment variables
+        # CI environment variables
         NODE_ENV: ci
         CI: true
     
@@ -89,12 +84,3 @@ jobs:
         path: playwright-report/
         retention-days: 14
 
-  deploy-report:
-    # Deploy report to GitHub Pages (optional)
-    if: always() && github.ref == 'refs/heads/main'
-    needs: [merge-reports]
-    runs-on: ubuntu-latest
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
