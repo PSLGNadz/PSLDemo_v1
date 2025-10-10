@@ -38,9 +38,9 @@ module.exports = defineConfig({
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'], 
-        headless: false,  // This ensures headed mode
-        slowMo: 1000,     // Slow down by 1 second between actions so you can see them
-        viewport: { width: 1280, height: 720 }  // Set a good viewport size
+        headless: process.env.CI ? true : false,  // Headless in CI, headed locally
+        slowMo: process.env.CI ? 0 : 1000,       // No slowMo in CI for speed
+        viewport: { width: 1280, height: 720 }   // Set a good viewport size
       },
     },
 
