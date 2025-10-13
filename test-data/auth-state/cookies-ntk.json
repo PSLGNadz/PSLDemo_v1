@@ -1,0 +1,162 @@
+[
+  {
+    "name": "interactionId",
+    "value": "{%22interactionId%22:%22tPEP1sxrrcD05EPNqOGpElX6wNGYifgDaoNAOrnAqZp4Cg2U7dvDsQ==%22}",
+    "domain": "staging.ntk-institute.org",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "CLID",
+    "value": "13c0066312a1477ab6566d0a88a9a48f.20251013.20261013",
+    "domain": "www.clarity.ms",
+    "path": "/",
+    "expires": 1791912018.45569,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "16F7B16C9D7469503C84A7E89C75687E",
+    "domain": ".bing.com",
+    "path": "/",
+    "expires": 1794072020.963894,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1760980820.964095,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SRM_B",
+    "value": "16F7B16C9D7469503C84A7E89C75687E",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1794072020.964243,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SM",
+    "value": "C",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "16F7B16C9D7469503C84A7E89C75687E",
+    "domain": ".clarity.ms",
+    "path": "/",
+    "expires": 1794072020.080484,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1760980820.080529,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "ANONCHK",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1760376620.080589,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "RVIDExtId",
+    "value": "3C978C7F-FE1F-4D7A-A8EC-EDCC57E44F09",
+    "domain": "staging.ntk-institute.org",
+    "path": "/",
+    "expires": 1791912020,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "global",
+    "value": "{%22id_key%22:%223C978C7F-FE1F-4D7A-A8EC-EDCC57E44F09%22%2C%22PartySource%22:%22Known%22%2C%22state%22:{%22name%22:%22soft%22%2C%22access%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlSWQiOjEsImluZm9JZCI6IjEtMzE5ODgxMDc2LTNjY2Q0OTMzLTE3NjAzNzYwMjIyMjciLCJyb2xlSWQiOiJzb2Z0IiwidXVpZCI6IjEtZDZjNjZiZWEtNThmOS00NGE0LWIxOTAtNDM1ZTI0YzIzMDFmIiwicGFydHlJZCI6MzE5ODgxMDc2LCJ0eXBlIjoiYWNjZXNzIiwiZG9tYWluIjoibnRrLWluc3RpdHV0ZS5vcmciLCJpc3N1ZXIiOiJwaG9lbml4IiwiaWF0IjoxNzYwMzc2MDIyLCJleHAiOjE3NjI5NjgwMjJ9.6Za7n_1JQLKNIKC40Um0DaO1osIwikfWO4CpfsiUYpc%22%2C%22refresh%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlSWQiOjEsImluZm9JZCI6IjEtMzE5ODgxMDc2LTNjY2Q0OTMzLTE3NjAzNzYwMjIyMjciLCJyb2xlSWQiOiJzb2Z0IiwidXVpZCI6IjEtZDZjNjZiZWEtNThmOS00NGE0LWIxOTAtNDM1ZTI0YzIzMDFmIiwicGFydHlJZCI6MzE5ODgxMDc2LCJ0eXBlIjoicmVmcmVzaCIsImRvbWFpbiI6Im50ay1pbnN0aXR1dGUub3JnIiwiaXNzdWVyIjoicGhvZW5peCIsImlhdCI6MTc2MDM3NjAyMiwiZXhwIjoxNzkxOTMzNjIzfQ.vDmOPl052v04-XYfTCA32e-SA8sDqsC3MdRG9ZkEpNM%22%2C%22role%22:{%22nl-rate%22:true%2C%22ntk-unsubscribe-complete%22:true%2C%22nl-today-feedback%22:true%2C%22nl-dispatch-feedback%22:true%2C%22article%22:true%2C%22frontRiver%22:true%2C%22feedback%22:true%2C%22search%22:true%2C%22site-rate%22:true%2C%22nl-unsubscribe%22:true%2C%22nl-external%22:true%2C%22search-transition%22:true%2C%22user%22:true}%2C%22roleLimits%22:{%22feedFilter%22:true%2C%22ugc%22:{%22score%22:{%22view%22:true}%2C%22gpt%22:{%22hasImplications%22:true%2C%22hasExplain%22:true%2C%22hasContext%22:false%2C%22hasTranslate%22:false}%2C%22hasComments%22:true%2C%22hasShare%22:true%2C%22hasLikes%22:true%2C%22hasActions%22:true}%2C%22showFeed%22:true%2C%22displayLiveFeedsAds%22:true}%2C%22specialty%22:%22Orthopaedics%22%2C%22specialtyId%22:115%2C%22specialtyLima%22:%22Cardiology%22%2C%22specialtyIdLima%22:18%2C%22profession%22:%22Physician%22%2C%22idhProfileId%22:320838453%2C%22isAuth%22:true%2C%22isLimited%22:false%2C%22userInfo%22:{%22profession%22:%22Physician%22%2C%22country%22:%22US%22%2C%22specialty%22:%22Orthopaedics%22%2C%22specialtyIdLima%22:18%2C%22ipAddress%22:%22%22%2C%22partyEmailId%22:306622178%2C%22languageCode%22:%22en%22%2C%22partyType%22:%22Person%22%2C%22deviceId%22:%223C978C7F-FE1F-4D7A-A8EC-EDCC57E44F09%22%2C%22countryCode%22:%22US%22%2C%22specialtyLima%22:%22Cardiology%22%2C%22specialtyId%22:115%2C%22idhProfileId%22:320838453%2C%22partyId%22:319881076%2C%22professionId%22:12%2C%22profession_id%22:12}}%2C%22country%22:%22US%22%2C%22limaSpecialtyId%22:18%2C%22EmailID%22:306622178%2C%22SpecialtyID%22:115%2C%22MemberID%22:319881076%2C%22profession_id%22:12%2C%22isAnon%22:false}",
+    "domain": ".staging.ntk-institute.org",
+    "path": "/",
+    "expires": 1762968023,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_clck",
+    "value": "18p2v73%5E2%5Eg04%5E1%5E2112",
+    "domain": ".ntk-institute.org",
+    "path": "/",
+    "expires": 1791912023,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_clsk",
+    "value": "1wltax8%5E1760376023472%5E2%5E1%5Ee.clarity.ms%2Fcollect",
+    "domain": ".ntk-institute.org",
+    "path": "/",
+    "expires": 1760462423,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_pk_id.173.b65c",
+    "value": "6b7b3c700d6e05d2.1760376023.",
+    "domain": "staging.ntk-institute.org",
+    "path": "/",
+    "expires": 1794331223,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_pk_ses.173.b65c",
+    "value": "1",
+    "domain": "staging.ntk-institute.org",
+    "path": "/",
+    "expires": 1760377826,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "staging.ntk-institute.org",
+    "value": "{%22lastAction%22:%22/%22%2C%22ogPath%22:{%22pathname%22:%22/%22%2C%22search%22:%22?interactionId=tPEP1sxrrcD05EPNqOGpElX6wNGYifgDaoNAOrnAqZp4Cg2U7dvDsQ%253D%253D%22%2C%22hash%22:%22%22}%2C%22limaSpecialty%22:%22Cardiology%22%2C%22viewid%22:%2231988107611760376023498%22}",
+    "domain": ".staging.ntk-institute.org",
+    "path": "/",
+    "expires": 1762968023,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]

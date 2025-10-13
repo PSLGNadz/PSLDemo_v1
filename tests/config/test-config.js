@@ -6,8 +6,6 @@ export const config = {
   //Staging Environment
   ntkPapersUrl: 'https://staging-ntkpapers.ntk-institute.org/',
   ntkUrl: 'https://staging.ntk-institute.org/',
-  //Production Environment
-  ntkUrlProd: 'https://ntk-institute.org/',
   // Mail services
   mailinatorUrl: 'https://www.mailinator.com/v4/public/inboxes.jsp',
   mailosaurURL: 'https://mailosaur.com/app-ea/login?redirect=%2Fapp-ea%2Fservers%2Ftjun2apv%2Fmessages%2Finbox',
@@ -24,11 +22,12 @@ export const config = {
 //    generateUniqueEmail2: `phoenix.newsletters+${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
     generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
     generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
-//    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@tjun2apv.mailosaur.net`,
-//    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@tjun2apv.mailosaur.net`,    
-//    generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,
-//    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslteam199291.testinator.com`,  
     loginVerifyEmail: `phoenix.newsletters@pslqa.testinator.com`,
+    //loginVerifyEmail: `nadzrul.adnan@pslgroup.com`,
+    // 🔐 Authentication credentials (for fast-mode tests)
+    email: `phoenix.newsletters@pslqa.testinator.com`, // Main auth email from config
+    emailPSL: `nadzrul.adnan@pslgroup.com`, 
+    password: process.env.TEST_USER_PASSWORD || 'defaultPassword123', // Set this in your .env file
     firstName: 'Playwright',
     lastName: `Auto${String(randomId).padStart(1, '0')}`,
     country: 'Malaysia',
@@ -46,8 +45,46 @@ export const config = {
 // Environment variables (these should be set in .env file)
 export const secrets = {
   mailinator: {
-    email: process.env.MAILINATOR_EMAIL || 'your-email@domain.com',
-    password: process.env.MAILINATOR_PASSWORD || 'your-password'
+    email: process.env.MAILINATOR_EMAIL || 'daniel.rodriguez@pslgroup.com',
+    password: process.env.MAILINATOR_PASSWORD || 'kJbGb!k3#6SySUS'
+  }
+};
+
+// 🔐 Authentication Configuration
+export const authConfig = {
+  // Enable/disable authentication state reuse
+  enableAuthReuse: process.env.DISABLE_AUTH_REUSE !== 'true',
+  
+  // Force all tests to start fresh (overrides smart detection)
+  forceAlwaysFresh: process.env.FORCE_FRESH_AUTH === 'true',
+  
+  // Maximum age of saved auth state (in hours)
+  maxAuthAgeHours: 24,
+  
+  // Auth state storage paths
+  authStorePath: './test-data/auth-state/',
+  
+  // Keywords that trigger fresh authentication
+  freshAuthKeywords: [
+    'login', 'signin', 'signup', 'register', 
+    'auth', 'verification', 'password', 'reset'
+  ],
+  
+  // Selectors for authentication validation
+  selectors: {
+    // Login form selectors
+    emailInput: '#email, [data-testid="email"], input[type="email"]',
+    passwordInput: '#password, [data-testid="password"], input[type="password"]',
+    loginSubmit: '[data-testid="login-submit"], button[type="submit"], .login-button',
+    
+    // Success indicators (adapt to your app)
+    authenticatedElements: [
+      '[data-testid="user-dashboard"]',
+      '.dashboard',
+      '.profile-menu',
+      '[data-testid="user-profile"]',
+      '.user-menu'
+    ]
   }
 };
 
