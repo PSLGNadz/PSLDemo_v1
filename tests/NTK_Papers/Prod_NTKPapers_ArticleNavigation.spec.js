@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { config, secrets, utils } from './config/test-config.js';
-import { authHelper } from './config/AuthHelper.js';
+import { config, secrets, utils } from '../config/NTK_Papers/test-config-Prod.js';
+import { authHelper } from '../config/NTK_Papers/AuthHelper_Prod.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-test.describe('NTK Article Navigation - Complete Flow', () => {
+test.describe('NTK Papers Article Navigation - Complete Flow', () => {
   test.beforeEach(async () => {
     console.log(`🎯 Test started at: ${utils.getCurrentTimestamp()}`);
   });
@@ -18,14 +18,14 @@ test.describe('NTK Article Navigation - Complete Flow', () => {
     // 🔐 SMART AUTHENTICATION HANDLING
     const authSuccess = await authHelper.handleAuthentication(
       page, 
-      'Staging_NTK_ArticleNavigation',  // ✅ This contains 'ntk'!
+      'Prod_NTKPapers_ArticleNavigation',  // ✅ This contains 'ntkpapers'!
       async (page) => {
         // 🔄 FULL LOGIN VERIFICATION FLOW (only runs if needed)
         console.log('🔄 Performing complete LoginVerification flow...');
         
         // Step 1: Navigate to NTK site and submit email
         console.log('📧 Step 1: Submitting email for verification');
-        await page.goto(config.ntkUrl, { waitUntil: 'networkidle' });
+        await page.goto(config.ntkPapersUrl, { waitUntil: 'networkidle' });
         await page.getByTestId('ULF-emailInput').locator('#email').click();
         await page.getByTestId('ULF-emailInput').locator('#email').fill(config.testUser.loginVerifyEmail);
         await page.getByTestId('ULF-emailFormSubmit').click();
@@ -67,7 +67,7 @@ test.describe('NTK Article Navigation - Complete Flow', () => {
             await page1.getByRole('textbox', { name: 'Password field' }).fill(secrets.mailinator.password);
             
             console.log('⏳ Waiting for login to process...');
-            await page1.waitForTimeout(30000); // Wait 30 seconds for login to process
+            await page1.waitForTimeout(30000); // 30ss wait for login to complete
             
             await page1.getByLabel('Login link').click();
             
@@ -232,20 +232,11 @@ test.describe('NTK Article Navigation - Complete Flow', () => {
     await page1.getByTestId('MenuIcon').click();
     await page1.locator('.MuiBackdrop-root').click();
 
-    // Navigate through different sections
-    console.log('🧭 Navigating through different sections...');
-    await page1.getByRole('button', { name: 'News' }).click();
-    await page1.getByRole('button', { name: 'Papers' }).click();
-    await page1.getByRole('button', { name: 'Digital' }).click();
-    await page1.getByRole('button', { name: 'Courses' }).click();
-    await page1.getByRole('button', { name: 'COVID-' }).click();
-    await page1.getByRole('button', { name: 'all' }).click();
-
     console.log('🔍 Step 2: Performing search functionality...');
     // Click on the search icon and perform a search
     await page1.getByRole('link').filter({ hasText: /^$/ }).click();
     await page1.getByRole('textbox', { name: 'Enter your search terms' }).click();
-    await page1.getByRole('textbox', { name: 'Enter your search terms' }).fill('Covid19');
+    await page1.getByRole('textbox', { name: 'Enter your search terms' }).fill('Cardiac');
     await page1.getByRole('button').nth(1).click();
 
     console.log('📖 Step 3: Interacting with article...');
@@ -291,12 +282,23 @@ test.describe('NTK Article Navigation - Complete Flow', () => {
     const page4Promise = page1.waitForEvent('popup');
     await page1.getByTestId('DougallIcon').first().click();
     const page4 = await page4Promise;
-    await page4.goto('https://staging.dougallgpt.com/');
+    await page4.goto('https://dougallgpt.com/');
     console.log('✅ DougallGPT popup opened and navigated successfully');
     await page4.close(); // Close popup after verification
 
+    // Click on search icon again to search using DougallGPT
+    await page1.getByRole('link').filter({ hasText: /^$/ }).click();
+    await page1.getByRole('textbox', { name: 'Enter your prompt here...' }).click();
+    await page1.getByRole('textbox', { name: 'Enter your prompt here...' }).fill('Heart');
+    const page5Promise = page.waitForEvent('popup');
+    await page1.getByRole('button').nth(2).click();
+    const page5 = await page5Promise;
+    //wait for the new page to load completely
+    await page5.waitForTimeout(10000);
+    console.log('✅ DougallGPT search popup opened successfully');
+
     // 📸 Take final screenshot for evidence
-    await page1.screenshot({ 
+    await page5.screenshot({ 
       path: './tests/evidences/article-navigation2-completed.png',
       fullPage: true 
     });

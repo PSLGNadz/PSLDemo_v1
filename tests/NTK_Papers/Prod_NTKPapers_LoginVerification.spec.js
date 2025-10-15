@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { config, secrets, utils } from './config/test-config.js';
+import { config, secrets, utils } from '../config/NTK_Papers/test-config-Prod.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -12,11 +12,73 @@ test('NTK Login Verification - Enhanced Dynamic Code Extraction', async ({ page,
 // Set longer timeout for this complex flow
     test.setTimeout(260000);
     
-    console.log('🚀 Starting NTK login verification test...');
+    console.log('🚀 Starting NTK Papers login verification test');
+
+    // Navigate to the login page first
+    await page.goto(config.ntkPapersUrl);
+    await page.waitForLoadState('networkidle');
+    
+    // � Check if user is already logged in by looking for MenuIcon
+    try {
+      console.log('🔍 Checking if user is already logged in...');
+      
+      // Check if MenuIcon is visible (indicates user might be logged in)
+      const menuIcon = page.getByTestId('MenuIcon');
+      const isMenuVisible = await menuIcon.isVisible({ timeout: 5000 });
+      
+      if (isMenuVisible) {
+        console.log('📱 MenuIcon found - checking for existing login...');
+        
+        // Click the MenuIcon to open the menu
+        await page.getByTestId('MenuIcon').locator('path').click();
+        console.log('📱 Menu opened');
+        
+        // Wait a moment for menu to fully open
+        await page.waitForTimeout(1500);
+        
+        // Check if "Log Out" button exists in the menu
+        const logoutButton = page.getByRole('button', { name: 'Log Out' });
+        const isLogoutVisible = await logoutButton.isVisible({ timeout: 3000 });
+        
+        if (isLogoutVisible) {
+          console.log('👤 User is logged in - logging out for fresh login flow...');
+          
+          // Click logout button
+          await page.getByRole('button', { name: 'Log Out' }).click();
+          console.log('🚪 Logout clicked');
+          
+          // Wait for logout to complete
+          await page.waitForLoadState('networkidle');
+          await page.waitForTimeout(3000);
+          console.log('✅ Successfully logged out - ready for fresh login');
+          
+        } else {
+          console.log('✅ No logout button found - user not logged in, proceeding with login');
+          //Go to login page to confirm
+          await page.goto(config.ntkPapersUrl);
+          await page.waitForLoadState('networkidle');
+          const emailInput = page.getByTestId('ULF-emailInput').locator('#email');
+          await expect(emailInput).toBeVisible({ timeout: 5000 });
+          console.log('✅ Email input visible - User is definitely in logged-out state');
+        }
+        
+      } else {
+        console.log('✅ MenuIcon not found - user not logged in, proceeding with login');
+        //Go to login page to confirm
+        await page.goto(config.ntkPapersUrl);
+        await page.waitForLoadState('networkidle');
+        const emailInput = page.getByTestId('ULF-emailInput').locator('#email');
+        await expect(emailInput).toBeVisible({ timeout: 5000 });
+        console.log('✅ Email input visible - User is definitely in logged-out state');
+      }
+      
+    } catch (error) {
+      console.log('⚠️ Error checking login state:', error.message);
+      console.log('✅ Continuing with login flow regardless...');
+    }
 
   // Step 1: Navigate to NTK site and submit email
   console.log('📧 Step 1: Submitting email for verification');
-  await page.goto(config.ntkPapersUrl, { waitUntil: 'networkidle' });
   await page.getByTestId('ULF-emailInput').locator('#email').click();
   await page.getByTestId('ULF-emailInput').locator('#email').fill(config.testUser.loginVerifyEmail);
   await page.getByTestId('ULF-emailFormSubmit').click();

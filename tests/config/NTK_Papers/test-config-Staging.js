@@ -5,7 +5,6 @@ export const config = {
   // Base URLs
   //Staging Environment
   ntkPapersUrl: 'https://staging-ntkpapers.ntk-institute.org/',
-  ntkUrl: 'https://staging.ntk-institute.org/',
   // Mail services
   mailinatorUrl: 'https://www.mailinator.com/v4/public/inboxes.jsp',
   mailosaurURL: 'https://mailosaur.com/app-ea/login?redirect=%2Fapp-ea%2Fservers%2Ftjun2apv%2Fmessages%2Finbox',
@@ -21,7 +20,6 @@ export const config = {
 //    generateUniqueEmail: `phoenix.newsletters+${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
 //    generateUniqueEmail2: `phoenix.newsletters+${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
     generateUniqueEmail: `phoenix.ntkPapers${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,
-    generateUniqueEmail2: `phoenix.ntk${String(randomId).padStart(1, '0')}@pslqa.testinator.com`,    
     loginVerifyEmail: `phoenix.newsletters@pslqa.testinator.com`,
     //loginVerifyEmail: `nadzrul.adnan@pslgroup.com`,
     // 🔐 Authentication credentials (for fast-mode tests)

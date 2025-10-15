@@ -29,7 +29,7 @@ module.exports = defineConfig({
     screenshot: 'only-on-failure',
     
     /* Video recording for debugging */
-    video: 'retain-on-failure',
+    video: 'on',//record video for all tests
   },
 
   /* Configure projects for major browsers */

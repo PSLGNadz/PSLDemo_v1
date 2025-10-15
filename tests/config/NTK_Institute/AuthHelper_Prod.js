@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { config, secrets } from './test-config.js';
+import { config, secrets } from './test-config-Prod.js';
 import { text } from 'stream/consumers';
 
 /**
@@ -14,7 +14,7 @@ import { text } from 'stream/consumers';
  */
 export class AuthHelper {
   constructor() {
-    this.authStateDir = './test-data/auth-state';
+    this.authStateDir = './test-data/auth-state/NTK_Institute';
     
     // Keywords that indicate a test should always start fresh
     this.freshAuthKeywords = [

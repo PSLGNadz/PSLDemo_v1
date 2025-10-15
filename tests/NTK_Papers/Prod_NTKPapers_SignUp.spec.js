@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { config, secrets, utils } from './config/test-config.js';
+import { config, secrets, utils } from '../config/NTK_Papers/test-config-Prod.js';
 import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -9,19 +9,79 @@ test.describe('NTK Papers User Registration', () => {
   
   test.beforeEach(async () => {
     // Generate unique email for each test run
-    uniqueEmail = config.testUser.generateUniqueEmail2;
+    uniqueEmail = config.testUser.generateUniqueEmail;
     console.log(`🎯 Test started at: ${utils.getCurrentTimestamp()}`);
     console.log(`📧 Using test email: ${uniqueEmail}`);
   });
 
-  test('Complete user signup flow with email verification', async ({ page }) => {
+  test('Complete user signup flow with email verification', async ({ page, context }) => {
     // Set longer timeout for this complex flow
     test.setTimeout(280000);
     
     console.log('🚀 Phase 1: NTK Papers Registration');
     
-    // Navigate to NTK Papers
-    await page.goto(config.ntkUrl, { waitUntil: 'networkidle' });
+    // Navigate to the signup page first
+    await page.goto(config.ntkPapersUrl);
+    await page.waitForLoadState('networkidle');
+    
+    // � Check if user is already logged in by looking for MenuIcon
+    try {
+      console.log('🔍 Checking if user is already logged in...');
+      
+      // Check if MenuIcon is visible (indicates user might be logged in)
+      const menuIcon = page.getByTestId('MenuIcon');
+      const isMenuVisible = await menuIcon.isVisible({ timeout: 5000 });
+      
+      if (isMenuVisible) {
+        console.log('📱 MenuIcon found - checking for existing login...');
+        
+        // Click the MenuIcon to open the menu
+        await page.getByTestId('MenuIcon').locator('path').click();
+        console.log('📱 Menu opened');
+        
+        // Wait a moment for menu to fully open
+        await page.waitForTimeout(1500);
+        
+        // Check if "Log Out" button exists in the menu
+        const logoutButton = page.getByRole('button', { name: 'Log Out' });
+        const isLogoutVisible = await logoutButton.isVisible({ timeout: 3000 });
+        
+        if (isLogoutVisible) {
+          console.log('👤 User is logged in - logging out for fresh signup flow...');
+          
+          // Click logout button
+          await page.getByRole('button', { name: 'Log Out' }).click();
+          console.log('🚪 Logout clicked');
+          
+          // Wait for logout to complete
+          await page.waitForLoadState('networkidle');
+          await page.waitForTimeout(3000);
+          console.log('✅ Successfully logged out - ready for fresh signup');
+          
+        } else {
+          console.log('✅ No logout button found - user not logged in, proceeding with signup');
+          //Go to login page to confirm
+          await page.goto(config.ntkPapersUrl);
+          await page.waitForLoadState('networkidle');
+          const emailInput = page.getByTestId('ULF-emailInput').locator('#email');
+          await expect(emailInput).toBeVisible({ timeout: 5000 });
+          console.log('✅ Email input visible - User is definitely in logged-out state');
+        }
+        
+      } else {
+        console.log('✅ MenuIcon not found - user not logged in, proceeding with signup');
+        //Go to login page to confirm
+        await page.goto(config.ntkPapersUrl);
+        await page.waitForLoadState('networkidle');
+        const emailInput = page.getByTestId('ULF-emailInput').locator('#email');
+        await expect(emailInput).toBeVisible({ timeout: 5000 });
+        console.log('✅ Email input visible - User is definitely in logged-out state');
+      }
+      
+    } catch (error) {
+      console.log('⚠️ Error checking login state:', error.message);
+      console.log('✅ Continuing with signup flow regardless...');
+    }
     
     // Step 1: Enter email and submit
     console.log('📧 Step 1: Entering email address');
@@ -60,6 +120,7 @@ test.describe('NTK Papers User Registration', () => {
     await page.waitForTimeout(1000);
     await page.getByRole('combobox').filter({ hasText: '<span>Upload document</span><' }).click();
     
+    // Select verification method first
     // Handle file upload with file chooser
     const uploadFilePath = path.join(process.cwd(), 'test-data', 'sample-document.png');
 
@@ -96,7 +157,7 @@ test.describe('NTK Papers User Registration', () => {
     await page.getByRole('textbox', { name: 'inbox field' }).click();
     await page.getByRole('textbox', { name: 'inbox field' }).fill(uniqueEmail);
     await page.getByRole('button', { name: 'GO', exact: true }).click();
-
+    
     // Step 8: Find and click verification email
     console.log('📬 Step 8: Finding verification email');
     const emailIdentifier = uniqueEmail.split('@')[0].toLowerCase();
@@ -112,6 +173,7 @@ test.describe('NTK Papers User Registration', () => {
         .click();
       
       await page.waitForTimeout(30000);
+
       // Step 10: Complete verification process
       console.log('✅ Step 10: Completing verification');
       
@@ -122,7 +184,7 @@ test.describe('NTK Papers User Registration', () => {
         await page.waitForTimeout(2000);
       }
       
-            
+                  
       console.log('🎉 Test completed successfully!');
       
     } catch (error) {

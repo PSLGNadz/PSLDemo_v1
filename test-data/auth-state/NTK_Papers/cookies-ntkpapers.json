@@ -1,0 +1,222 @@
+[
+  {
+    "name": "interactionId",
+    "value": "{%22interactionId%22:%22zkbxMvRmZdmv7GCCw57oGhnvjnQQhwHS294CiLvlpaYTtjVbVMsI6A==%22}",
+    "domain": "staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "CLID",
+    "value": "f99150b77f3e44ff9a04ba108887ae3d.20251015.20261015",
+    "domain": "www.clarity.ms",
+    "path": "/",
+    "expires": 1792088888.720968,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "0F7686D5FA4B6F1511C59053FB116E67",
+    "domain": ".bing.com",
+    "path": "/",
+    "expires": 1794248889.96955,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1761157689.969586,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SRM_B",
+    "value": "0F7686D5FA4B6F1511C59053FB116E67",
+    "domain": ".c.bing.com",
+    "path": "/",
+    "expires": 1794248889.969601,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "SM",
+    "value": "C",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MUID",
+    "value": "0F7686D5FA4B6F1511C59053FB116E67",
+    "domain": ".clarity.ms",
+    "path": "/",
+    "expires": 1794248890.214046,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "MR",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1761157690.214073,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "ANONCHK",
+    "value": "0",
+    "domain": ".c.clarity.ms",
+    "path": "/",
+    "expires": 1760553490.214083,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "RVIDExtId",
+    "value": "3C978C7F-FE1F-4D7A-A8EC-EDCC57E44F09",
+    "domain": "staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": 1792088891,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "_clck",
+    "value": "1nw8ogo%5E2%5Eg06%5E1%5E2114",
+    "domain": ".ntk-institute.org",
+    "path": "/",
+    "expires": 1792088894,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_pk_id.188.ee87",
+    "value": "9c4126cca472618a.1760552895.",
+    "domain": "staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": 1794508095,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_pk_ses.188.ee87",
+    "value": "1",
+    "domain": "staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": 1760554794,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_clsk",
+    "value": "1l448bv%5E1760552900712%5E3%5E1%5Ee.clarity.ms%2Fcollect",
+    "domain": ".ntk-institute.org",
+    "path": "/",
+    "expires": 1760639300,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "JSESSIONID",
+    "value": "node01ez56eicigte51j8emjvbxmbw22677744.node0",
+    "domain": "www.mailinator.com",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "SERVERID",
+    "value": "s2",
+    "domain": "www.mailinator.com",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "MSESSIONID",
+    "value": "248635d5-0e1a-4acf-9b97-e42d55151f38",
+    "domain": "www.mailinator.com",
+    "path": "/",
+    "expires": 1763144954.39705,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga",
+    "value": "GA1.1.1091543297.1760552955",
+    "domain": ".mailinator.com",
+    "path": "/",
+    "expires": 1795112955.220011,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "last_private_inbox",
+    "value": "phoenix.newsletters",
+    "domain": "www.mailinator.com",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "global",
+    "value": "{%22id_key%22:%223C978C7F-FE1F-4D7A-A8EC-EDCC57E44F09%22%2C%22PartySource%22:%22Known%22%2C%22country%22:%22US%22%2C%22limaSpecialtyId%22:18%2C%22EmailID%22:306622178%2C%22SpecialtyID%22:115%2C%22MemberID%22:319881076%2C%22profession_id%22:12%2C%22isAnon%22:false%2C%22state%22:{%22name%22:%22auth%22%2C%22access%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlSWQiOjMzMSwiaW5mb0lkIjoiMzMxLTMxOTg4MTA3Ni1lYzM4YTliNS0xNzYwNTUyOTE2MzE5Iiwicm9sZUlkIjoiYXV0aCIsInV1aWQiOiIzMzEtY2ZhMWEyODMtYmM1Yy00MmNkLWEwNDctZGM5YjEwYjU0ZDNlIiwicGFydHlJZCI6MzE5ODgxMDc2LCJ0eXBlIjoiYWNjZXNzIiwiZG9tYWluIjoibnRrLWluc3RpdHV0ZS5vcmciLCJpc3N1ZXIiOiJwaG9lbml4IiwiaWF0IjoxNzYwNTUyOTE2LCJleHAiOjE3NjMxNDQ5MTZ9.v5C2EN9VTRP7srlhezdibMk1sNaSuAHLaMEhOizi510%22%2C%22refresh%22:%22eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlSWQiOjMzMSwiaW5mb0lkIjoiMzMxLTMxOTg4MTA3Ni1lYzM4YTliNS0xNzYwNTUyOTE2MzE5Iiwicm9sZUlkIjoiYXV0aCIsInV1aWQiOiIzMzEtY2ZhMWEyODMtYmM1Yy00MmNkLWEwNDctZGM5YjEwYjU0ZDNlIiwicGFydHlJZCI6MzE5ODgxMDc2LCJ0eXBlIjoicmVmcmVzaCIsImRvbWFpbiI6Im50ay1pbnN0aXR1dGUub3JnIiwiaXNzdWVyIjoicGhvZW5peCIsImlhdCI6MTc2MDU1MjkxNiwiZXhwIjoxNzkyMTEwNTE3fQ.2f0GNBKtSYRvWje3kl3CWfgbvyFi4Z-TqtrtH2i_s1s%22%2C%22role%22:{%22password-reset%22:true%2C%22nl-rate%22:true%2C%22ntk-unsubscribe-complete%22:true%2C%22nl-today-feedback%22:true%2C%22nl-dispatch-feedback%22:true%2C%22article%22:true%2C%22frontRiver%22:true%2C%22feedback%22:true%2C%22validate-password%22:true%2C%22search%22:true%2C%22site-rate%22:true%2C%22nl-unsubscribe%22:true%2C%22nl-external%22:true%2C%22search-transition%22:true%2C%22user%22:true}%2C%22roleLimits%22:{%22feedFilter%22:false%2C%22ugc%22:{%22score%22:{%22view%22:true}%2C%22gpt%22:{%22hasImplications%22:true%2C%22hasExplain%22:true%2C%22hasContext%22:false%2C%22hasTranslate%22:false}%2C%22hasComments%22:true%2C%22hasShare%22:true%2C%22hasLikes%22:true%2C%22hasActions%22:true}%2C%22showFeed%22:true%2C%22displayLiveFeedsAds%22:true}%2C%22specialty%22:%22Orthopaedics%22%2C%22specialtyId%22:115%2C%22specialtyLima%22:%22Cardiology%22%2C%22specialtyIdLima%22:18%2C%22profession%22:%22Physician%22%2C%22idhProfileId%22:320838451%2C%22isAuth%22:true%2C%22isLimited%22:false%2C%22userInfo%22:{%22profession%22:%22Physician%22%2C%22country%22:%22US%22%2C%22specialty%22:%22Orthopaedics%22%2C%22specialtyIdLima%22:18%2C%22partyEmailId%22:306622178%2C%22languageCode%22:%22en%22%2C%22countryCode%22:%22US%22%2C%22specialtyLima%22:%22Cardiology%22%2C%22specialtyId%22:115%2C%22loggedIn%22:true%2C%22idhProfileId%22:320838451%2C%22partyId%22:319881076%2C%22professionId%22:12%2C%22profession_id%22:12}}}",
+    "domain": ".staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": 1763144968,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "staging-ntkpapers.ntk-institute.org",
+    "value": "{%22lastAction%22:%22/%22%2C%22ogPath%22:{%22pathname%22:%22/%22%2C%22search%22:%22?interactionId=NyjaqvXjfA3fPZaaWfzHuVv_FQZ93QnevqDPUnE8iB4wwtAhZJfoOg%253D%253D%22%2C%22hash%22:%22%22}%2C%22limaSpecialty%22:%22Cardiology%22%2C%22viewid%22:%223198810763311760552993060%22}",
+    "domain": ".staging-ntkpapers.ntk-institute.org",
+    "path": "/",
+    "expires": 1763144993,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga_KQMG4HTV3B",
+    "value": "GS2.1.s1760552955$o1$g1$t1760552997$j18$l0$h0",
+    "domain": ".mailinator.com",
+    "path": "/",
+    "expires": 1795112997.071146,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]
