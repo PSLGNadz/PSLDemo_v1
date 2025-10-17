@@ -807,6 +807,7 @@ logout system for fresh signup/login flows."
 
 ### **🔧 Key Patterns Established:**
 1. **MenuIcon Detection**: `await page.getByTestId('MenuIcon').locator('path').click()`
+```markdown
 2. **Logout Execution**: `await page.getByRole('button', { name: 'Log Out' }).click()`
 3. **Module Organization**: `tests/ModuleName/Environment_ModuleName_TestType.spec.js`
 4. **Config Structure**: `tests/config/ModuleName/test-config-Environment.js`
@@ -814,4 +815,46 @@ logout system for fresh signup/login flows."
 
 ---
 
-**✨ This context file contains everything needed to restore our working relationship and continue building your automation framework! ✨**
+## 🤖 **MCP (Model Context Protocol) Integration - v4.1**
+
+### **🎯 MCP Setup Status: ✅ ACTIVE**
+
+**MCP provides enhanced AI assistance with direct project context awareness:**
+
+### **📁 MCP Configuration:**
+```json
+Location: ~/.mcp/flagship-e2e/config.json
+Claude Config: ~/Library/Application Support/Claude/claude_desktop_config.json
+Global Package: @playwright/mcp@0.0.43
+Port: 3000 (configurable)
+```
+
+### **🚀 MCP Benefits for Flagship_E2E:**
+- **🔍 Smart Test Analysis**: Direct access to test results, logs, and screenshots
+- **📊 Project Context**: Understands modular structure across all 12 test files
+- **🛠️ Enhanced Debugging**: Real-time analysis of authentication flows and MenuIcon logout
+- **👥 Team Collaboration**: Shared configuration for consistent development patterns
+- **🔄 CI/CD Integration**: Direct pipeline analysis and failure detection
+
+### **🛡️ Safety Features:**
+- **Zero Impact**: No changes to existing project files or package.json
+- **Isolated Config**: MCP settings stored outside project directory
+- **Backup Available**: `Flagship_E2E_BACKUP_20251017_1909/`
+- **Team Compatible**: Can coexist with multiple MCP setups
+
+### **🔧 MCP Usage Patterns:**
+- **Test Debugging**: "Analyze my MenuIcon logout failures across all modules"
+- **Pattern Analysis**: "Check authentication consistency in NTK_Institute vs NTK_Papers"
+- **CI/CD Monitoring**: "Review recent GitHub Actions pipeline performance"
+- **Code Generation**: "Create new module following existing patterns"
+
+### **📋 Team Integration:**
+```bash
+# Share MCP config with team
+git add .mcp/ # (if desired)
+npm install -g @playwright/mcp # Global installation
+```
+
+---
+
+**✨ This context file contains everything needed to restore our working relationship and continue building your automation framework with enhanced MCP capabilities! ✨**

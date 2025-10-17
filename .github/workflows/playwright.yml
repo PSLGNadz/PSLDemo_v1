@@ -1,53 +1,135 @@
-name: Playwright Tests
+name: Flagship E2E - Complete Test Suite
 
 on:
   push:
     branches: [ main, master, develop ]
   pull_request:
     branches: [ main, master, develop ]
+  schedule:
+    # Run daily at 6 AM UTC (optional - for regular health checks)
+    - cron: '0 6 * * *'
 
 permissions:
   contents: read
 
 jobs:
   test:
-    timeout-minutes: 45  # Increased for email verification tests
+    name: Run All Flagship E2E Tests
+    timeout-minutes: 60  # Increased for complete test suite
     runs-on: ubuntu-latest
     
-    steps:
-    - uses: actions/checkout@v4
+    strategy:
+      fail-fast: false  # Continue running other tests even if one fails
+      matrix:
+        test-group: [
+          "NTK_Institute_Production",
+          "NTK_Institute_Staging", 
+          "NTK_Papers_Production",
+          "NTK_Papers_Staging"
+          # 🚀 FUTURE WEBSITES: Add new entries here when you create new modules
+          # "NewWebsite_Production",
+          # "NewWebsite_Staging"
+        ]
     
-    - uses: actions/setup-node@v4
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
       with:
         node-version: lts/*
         cache: 'npm'
     
-    - name: Install dependencies
+    - name: 📦 Install Dependencies
       run: npm ci
     
-    - name: Install Playwright Browsers
+    - name: 🌐 Install Playwright Browsers
       run: npx playwright install --with-deps chromium
     
-    - name: Run Playwright tests (Signup tests only - no email verification)
-      run: npx playwright test --project=chromium --grep-invert "Login.*Verification|Email.*Verification"
+    - name: 🧪 Run Tests - ${{ matrix.test-group }}
+      run: |
+        case "${{ matrix.test-group }}" in
+          "NTK_Institute_Production")
+            npx playwright test tests/NTK_Institute/Prod_*.spec.js --project=chromium
+            ;;
+          "NTK_Institute_Staging")  
+            npx playwright test tests/NTK_Institute/Staging_*.spec.js --project=chromium
+            ;;
+          "NTK_Papers_Production")
+            npx playwright test tests/NTK_Papers/Prod_*.spec.js --project=chromium
+            ;;
+          "NTK_Papers_Staging")
+            npx playwright test tests/NTK_Papers/Staging_*.spec.js --project=chromium
+            ;;
+          # 🚀 FUTURE WEBSITES: Add new test execution patterns here
+          # "NewWebsite_Production")
+          #   npx playwright test tests/NewWebsite/Prod_*.spec.js --project=chromium
+          #   ;;
+          # "NewWebsite_Staging")
+          #   npx playwright test tests/NewWebsite/Staging_*.spec.js --project=chromium
+          #   ;;
+        esac
       env:
         # CI environment variables
-        NODE_ENV: ci
+        NODE_ENV: production
         CI: true
+        # Playwright settings
+        PLAYWRIGHT_REPORTERS: html,junit
+        PWTEST_SKIP_TEST_OUTPUT: 1
+        # Email verification credentials (loaded from repository secrets)
+        MAILINATOR_EMAIL: ${{ secrets.MAILINATOR_EMAIL }}
+        MAILINATOR_PASSWORD: ${{ secrets.MAILINATOR_PASSWORD }}
     
-    - name: Upload test results
+    - name: 📊 Upload Test Report - ${{ matrix.test-group }}
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: playwright-report-chromium
+        name: playwright-report-${{ matrix.test-group }}
         path: playwright-report/
         retention-days: 14
     
-    - name: Upload test screenshots (on failure)
+    - name: 📸 Upload Screenshots - ${{ matrix.test-group }}
       uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: playwright-screenshots-chromium
+        name: playwright-screenshots-${{ matrix.test-group }}
         path: test-results/
         retention-days: 7
+        
+    - name: 📋 Upload Test Results XML - ${{ matrix.test-group }}
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.test-group }}
+        path: test-results/*.xml
+        retention-days: 7
+
+  # Summary job that depends on all test groups
+  test-summary:
+    name: ✅ Test Suite Summary
+    runs-on: ubuntu-latest
+    needs: test
+    if: always()
+    
+    steps:
+    - name: 📋 Check All Tests Status
+      run: |
+        echo "=== Flagship E2E Test Suite Results ==="
+        if [[ "${{ needs.test.result }}" == "success" ]]; then
+          echo "🎉 ALL TESTS PASSED - GREEN STATUS ✅"
+          echo "✅ NTK Institute Production: PASSED"
+          echo "✅ NTK Institute Staging: PASSED" 
+          echo "✅ NTK Papers Production: PASSED"
+          echo "✅ NTK Papers Staging: PASSED"
+          echo ""
+          echo "🚀 Flagship E2E automation framework is healthy!"
+          exit 0
+        else
+          echo "❌ SOME TESTS FAILED - RED STATUS ⚠️"
+          echo "Please check individual test group results above."
+          echo ""
+          echo "🔍 Check the uploaded artifacts for detailed failure information."
+          exit 1
+        fi
 
