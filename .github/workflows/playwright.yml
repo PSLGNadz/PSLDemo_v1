@@ -1,4 +1,4 @@
-name: Flagship E2E - Complete Test Suite
+name: Flagship E2E - Login Verification Tests
 
 on:
   push:
@@ -14,8 +14,8 @@ permissions:
 
 jobs:
   test:
-    name: Run All Flagship E2E Tests
-    timeout-minutes: 60  # Increased for complete test suite
+    name: Run Login Verification Tests
+    timeout-minutes: 30  # Reduced for focused login tests
     runs-on: ubuntu-latest
     
     strategy:
@@ -53,25 +53,25 @@ jobs:
       run: |
         case "${{ matrix.test-group }}" in
           "NTK_Institute_Staging")  
-            npx playwright test tests/NTK_Institute/Staging_*.spec.js --project=chromium
+            npx playwright test tests/NTK_Institute/Staging_NTK_LoginVerification.spec.js --project=chromium
             ;;
           "NTK_Papers_Staging")
-            npx playwright test tests/NTK_Papers/Staging_*.spec.js --project=chromium
+            npx playwright test tests/NTK_Papers/Staging_NTKPapers_LoginVerification.spec.js --project=chromium
             ;;
           # 🚀 PRODUCTION TESTS: Uncomment when ready for production testing
           # "NTK_Institute_Production")
-          #   npx playwright test tests/NTK_Institute/Prod_*.spec.js --project=chromium
+          #   npx playwright test tests/NTK_Institute/Prod_NTK_LoginVerification.spec.js --project=chromium
           #   ;;
           # "NTK_Papers_Production")
-          #   npx playwright test tests/NTK_Papers/Prod_*.spec.js --project=chromium
+          #   npx playwright test tests/NTK_Papers/Prod_NTKPapers_LoginVerification.spec.js --project=chromium
           #   ;;
           #
           # 🚀 FUTURE WEBSITES: Add new test execution patterns here
           # "NewWebsite_Staging")
-          #   npx playwright test tests/NewWebsite/Staging_*.spec.js --project=chromium
+          #   npx playwright test tests/NewWebsite/Staging_*_LoginVerification.spec.js --project=chromium
           #   ;;
           # "NewWebsite_Production")
-          #   npx playwright test tests/NewWebsite/Prod_*.spec.js --project=chromium
+          #   npx playwright test tests/NewWebsite/Prod_*_LoginVerification.spec.js --project=chromium
           #   ;;
         esac
       env:
@@ -119,17 +119,18 @@ jobs:
     steps:
     - name: 📋 Check All Tests Status
       run: |
-        echo "=== Flagship E2E Test Suite Results - STAGING ONLY ==="
+        echo "=== Flagship E2E Login Verification Results - STAGING ONLY ==="
         if [[ "${{ needs.test.result }}" == "success" ]]; then
-          echo "🎉 ALL STAGING TESTS PASSED - GREEN STATUS ✅"
-          echo "✅ NTK Institute Staging: PASSED" 
-          echo "✅ NTK Papers Staging: PASSED"
+          echo "🎉 ALL LOGIN VERIFICATION TESTS PASSED - GREEN STATUS ✅"
+          echo "✅ NTK Institute Login: PASSED" 
+          echo "✅ NTK Papers Login: PASSED"
           echo ""
-          echo "🚀 Flagship E2E staging environment is healthy!"
-          echo "� Production tests are disabled (enable in workflow when ready)"
+          echo "🚀 Flagship E2E login flows are healthy!"
+          echo "📝 Note: Signup tests excluded due to captcha requirements"
+          echo "🔧 Production tests are disabled (enable in workflow when ready)"
           exit 0
         else
-          echo "❌ SOME STAGING TESTS FAILED - RED STATUS ⚠️"
+          echo "❌ SOME LOGIN VERIFICATION TESTS FAILED - RED STATUS ⚠️"
           echo "Please check individual test group results above."
           echo ""
           echo "🔍 Check the uploaded artifacts for detailed failure information."
