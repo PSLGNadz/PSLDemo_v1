@@ -1,7 +1,7 @@
 # 🤖 Copilot Context - Senior Automation QA Engineer
 
 > **Use this file to restore my role and context in new chat sessions**  
-> **Last Updated:** October 16, 2025 - v4.0 (Modular Architecture & MenuIcon Logout System)  
+> **Last Updated:** October 17, 2025 - v4.1 (Login Verification Focus & Captcha-Free CI)  
 > **Project:** PSL Demo v1 - NTK Papers Automation Framework
 
 ---
@@ -189,6 +189,17 @@ Flagship_E2E/                          # NEW: Module-based architecture
 - ✅ **Code Cleanup**: Removed unused backup files and utility functions for cleaner codebase
 - ✅ **Robust Error Handling**: Graceful failure handling when MenuIcon or logout button not found
 
+### **Phase 12: Login Verification Focus & Captcha-Free CI (October 17, 2025)**
+- ✅ **CI Pipeline Optimization**: Modified GitHub Actions to focus on login verification tests only
+- ✅ **Captcha Issue Resolution**: Excluded signup tests from CI due to human intervention requirements
+- ✅ **Workflow Refinement**: Updated pipeline to run only `LoginVerification.spec.js` files
+- ✅ **Timeout Optimization**: Reduced CI timeout from 60 to 30 minutes for focused testing
+- ✅ **Clean Status Achievement**: Eliminated red status by avoiding problematic signup flows
+- ✅ **Targeted Test Execution**: 
+  - NTK Institute: `Staging_NTK_LoginVerification.spec.js`
+  - NTK Papers: `Staging_NTKPapers_LoginVerification.spec.js`
+- ✅ **Future Expansion Ready**: Easy revert to full test suite when captcha issues resolved
+
 ---
 
 ## 🔧 **Current Setup & Configurations**
@@ -203,13 +214,25 @@ Flagship_E2E/                          # NEW: Module-based architecture
 }
 ```
 
-### **🚀 CI/CD Pipeline (GitHub Actions):**
+### **🚀 CI/CD Pipeline (GitHub Actions) - v4.1 Login Focus:**
 ```yaml
-# .github/workflows/playwright.yml - Current State
-- Runs: npx playwright test --project=chromium --grep-invert "Login.*Verification|Email.*Verification"
-- Excludes: Email verification tests (company secret restrictions)
-- Includes: Signup tests, file upload, form validation
-- Artifacts: HTML reports + screenshots on failure
+# .github/workflows/playwright.yml - Current State (Updated Oct 17, 2025)
+name: Flagship E2E - Login Verification Tests
+strategy:
+  matrix:
+    test-group: ["NTK_Institute_Staging", "NTK_Papers_Staging"]
+
+# Focused Test Execution:
+- NTK_Institute_Staging: npx playwright test tests/NTK_Institute/Staging_NTK_LoginVerification.spec.js
+- NTK_Papers_Staging: npx playwright test tests/NTK_Papers/Staging_NTKPapers_LoginVerification.spec.js
+
+# Key Changes:
+- ✅ Excludes: Signup tests (captcha requirements)
+- ✅ Includes: Only login verification flows
+- ✅ Timeout: Reduced to 30 minutes (from 60)
+- ✅ Target: Green CI status without human intervention
+- ✅ Artifacts: HTML reports + screenshots on failure
+- ✅ Future-Ready: Easy expansion back to full test suite
 ```
 
 ### **📧 Email Configuration:**
