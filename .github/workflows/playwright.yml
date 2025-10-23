@@ -5,9 +5,9 @@ on:
     branches: [ main, master, develop ]
   pull_request:
     branches: [ main, master, develop ]
-  schedule:
+  #schedule:
     # Run daily at 6 AM UTC (optional - for regular health checks)
-    - cron: '0 6 * * *'
+    #- cron: '0 6 * * *'
 
 permissions:
   contents: read
